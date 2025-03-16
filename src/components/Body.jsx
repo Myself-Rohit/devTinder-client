@@ -6,7 +6,9 @@ const Body = () => {
 	return (
 		<div>
 			<Navbar />
-			<Outlet />
+			<div className="min-h-screen bg-base-200">
+				<Outlet />
+			</div>
 		</div>
 	);
 };
