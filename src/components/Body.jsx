@@ -12,7 +12,7 @@ const Body = () => {
 	return (
 		<div>
 			<Navbar />
-			<div className="min-h-screen bg-base-200">
+			<div className="min-h-screen relative bg-base-200 p-5">
 				<Outlet />
 			</div>
 			<Footer />
