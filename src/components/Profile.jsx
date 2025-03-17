@@ -8,12 +8,12 @@ const Profile = () => {
 	const user = useSelector((state) => state.user);
 
 	const [formData, setFormData] = useState({
-		firstName: user.firstName,
-		lastName: user.lastName,
-		email: user.email,
-		age: user.age,
-		gender: user.gender,
-		about: user.about,
+		firstName: user?.firstName,
+		lastName: user?.lastName,
+		email: user?.email,
+		age: user?.age,
+		gender: user?.gender,
+		about: user?.about,
 	});
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -128,9 +128,7 @@ const Profile = () => {
 						type="number"
 						className="input validator"
 						required
-						placeholder="Type a number between 1 to 10"
-						min="1"
-						max="10"
+						placeholder="Enter your age"
 						name="age"
 						value={formData?.age}
 						onChange={handleChange}
@@ -139,10 +137,9 @@ const Profile = () => {
 
 				<div>
 					<select
-						defaultValue="Choose your gender"
 						className="select"
 						name="gender"
-						value={formData?.gender}
+						selected={formData?.gender}
 						onChange={(e) =>
 							setFormData({ ...formData, gender: e.target.value.toLowerCase() })
 						}

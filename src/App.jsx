@@ -19,7 +19,7 @@ const App = () => {
 					</Route>
 				</Routes>
 			</BrowserRouter>
-			<ToastContainer />
+			<ToastContainer position="bottom-right" autoClose={3000} draggable />
 		</Provider>
 	);
 };
