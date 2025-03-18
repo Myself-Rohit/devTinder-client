@@ -13,9 +13,13 @@ const UserCard = ({ data }) => {
 				<h2 className="card-title">
 					{data?.firstName} {data?.lastName}
 				</h2>
-				<p>{data?.age}</p>
+				<p>
+					{data?.age}
+					{", "}
+					{data?.gender}
+				</p>
 				<p>{data?.about}</p>
-				<p>{data?.gender}</p>
+
 				<div className="card-actions justify-end">
 					<button className="btn btn-active btn-primary">Ignore</button>
 					<button className="btn btn-active btn-secondary">Interested</button>

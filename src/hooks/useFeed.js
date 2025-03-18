@@ -19,9 +19,9 @@ const useFeed = () => {
 				dispatch(addFeed(res.data));
 			}
 		} catch (error) {
-			toast.error(
-				error?.response?.data || error?.message || "Failed to get feed!"
-			);
+			// toast.error(
+			// 	error?.response?.data || error?.message || "Failed to get feed!"
+			// );
 		} finally {
 			setLoading(false);
 		}

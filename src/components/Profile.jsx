@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserCard from "./userCard";
+import UserCard from "./UserCard";
 import { useDispatch, useSelector } from "react-redux";
 import useProfileEdit from "../hooks/useProfileEdit.js";
 import { addUser } from "../slice/userSlice.js";
@@ -14,6 +14,7 @@ const Profile = () => {
 		age: user?.age,
 		gender: user?.gender,
 		about: user?.about,
+		photoUrl: user?.photoUrl,
 	});
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -139,9 +140,12 @@ const Profile = () => {
 					<select
 						className="select"
 						name="gender"
-						selected={formData?.gender}
+						value={formData?.gender}
 						onChange={(e) =>
-							setFormData({ ...formData, gender: e.target.value.toLowerCase() })
+							setFormData({
+								...formData,
+								gender: e.target.value.toLowerCase(),
+							})
 						}
 					>
 						<option disabled={true}>Choose your gender</option>
@@ -151,12 +155,43 @@ const Profile = () => {
 					</select>
 				</div>
 				<div>
+					<label className="input validator">
+						<svg
+							className="h-[1em] opacity-50"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+						>
+							<g
+								strokeLinejoin="round"
+								strokeLinecap="round"
+								strokeWidth="2.5"
+								fill="none"
+								stroke="currentColor"
+							>
+								<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+								<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+							</g>
+						</svg>
+						<input
+							type="url"
+							required
+							placeholder="https://"
+							pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
+							title="Must be valid URL"
+							name="photoUrl"
+							value={formData?.photoUrl}
+							onChange={handleChange}
+						/>
+					</label>
+				</div>
+				<div>
 					<textarea
 						className="textarea"
 						placeholder="About"
-						name="about"
-						value={formData?.about}
-						onChange={handleChange}
+						defaultValue={formData?.about}
+						onChange={(e) =>
+							setFormData({ ...formData, about: e.target.value })
+						}
 					></textarea>
 				</div>
 				<button onClick={saveInfo} className="btn btn-primary self-start">
