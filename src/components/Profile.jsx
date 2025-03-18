@@ -25,7 +25,7 @@ const Profile = () => {
 		dispatch(addUser(formData));
 	};
 	if (loading) {
-		return <p>Loading...</p>;
+		return <span className="loading loading-spinner text-primary"></span>;
 	}
 	return (
 		<div className="flex flex-col sm:flex-row bg-base-300 items-center sm:items-start sm:justify-center sm:mt-10 p-5 gap-5">
@@ -53,8 +53,8 @@ const Profile = () => {
 							required
 							placeholder="FirstName"
 							pattern="[A-Za-z][A-Za-z0-9\-]*"
-							minlength="3"
-							maxlength="30"
+							minLength="3"
+							maxLength="30"
 							title="Only letters, numbers or dash"
 							name="firstName"
 							value={formData?.firstName}
@@ -86,8 +86,8 @@ const Profile = () => {
 							required
 							placeholder="LastName"
 							pattern="[A-Za-z][A-Za-z0-9\-]*"
-							minlength="3"
-							maxlength="30"
+							minLength="3"
+							maxLength="30"
 							title="Only letters, numbers or dash"
 							name="lastName"
 							value={formData?.lastName}
