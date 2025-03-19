@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import UserCard from "./userCard";
+import UserCard from "./UserCard";
 import useFeed from "../hooks/useFeed.js";
 
 const Feed = () => {
 	const { loading, data } = useFeed();
-	const feed = useSelector((state) => state.feed);
+	const feed = useSelector((store) => store.feed);
 	if (loading) {
 		return <span className="loading loading-spinner text-primary"></span>;
 	}

@@ -1,5 +1,5 @@
 import React from "react";
-import useConnections from "../hooks/useConnections";
+import useConnections from "../hooks/useConnections.js";
 
 const Connections = () => {
 	const { data } = useConnections();
@@ -9,7 +9,6 @@ const Connections = () => {
 			{data && (
 				<ul className="list bg-base-100 rounded-box shadow-md">
 					{data.map((user) => {
-						console.log("user>>>", user);
 						return (
 							<li key={user?._id} className="list-row">
 								<div>

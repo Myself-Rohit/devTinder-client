@@ -140,7 +140,7 @@ const Profile = () => {
 					<select
 						className="select"
 						name="gender"
-						value={formData?.gender}
+						defaultValue={formData?.gender}
 						onChange={(e) =>
 							setFormData({
 								...formData,
@@ -148,10 +148,12 @@ const Profile = () => {
 							})
 						}
 					>
-						<option disabled={true}>Choose your gender</option>
-						<option>Male</option>
-						<option>Female</option>
-						<option>Other</option>
+						<option selected disabled={true}>
+							Choose your gender
+						</option>
+						<option value={"male"}>Male</option>
+						<option value={"female"}>Female</option>
+						<option value={"other"}>Other</option>
 					</select>
 				</div>
 				<div>
