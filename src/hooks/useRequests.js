@@ -21,7 +21,7 @@ const useRequests = () => {
 	};
 	useEffect(() => {
 		getRequests();
-	}, []);
+	}, [data]);
 	return { loading, data };
 };
 

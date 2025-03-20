@@ -1,8 +1,14 @@
 import React from "react";
 import useRequests from "../hooks/useRequests.js";
+import useResponse from "../hooks/useResponse.js";
 
 const Requests = () => {
 	const { data } = useRequests();
+	const { loading, response } = useResponse();
+	const sendResponse = (status, id) => {
+		response(status, id);
+	};
+
 	return (
 		<div>
 			<h1>Requests</h1>
@@ -10,7 +16,10 @@ const Requests = () => {
 				<ul className="list bg-base-100 rounded-box shadow-md">
 					{data.map((user) => {
 						return (
-							<li key={user?.senderId?._id} className="list-row">
+							<li
+								key={user?.senderId?._id}
+								className="sm:list-row pb-4 flex flex-col gap-5 items-center border-b last:border-b-0 sm:border-none m-4 "
+							>
 								<div>
 									<img
 										className="size-10 rounded-full"
@@ -27,40 +36,23 @@ const Requests = () => {
 									</div>
 								</div>
 								<p className="list-col-wrap text-xs">{user?.senderId?.about}</p>
-								<button className="btn btn-square btn-ghost">
-									<svg
-										className="size-[1.2em]"
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 24 24"
+								<div className="flex gap-4">
+									<button
+										disabled={loading}
+										onClick={() => sendResponse("rejected", user._id)}
+										className="btn btn-primary "
 									>
-										<g
-											strokeLinejoin="round"
-											strokeLinecap="round"
-											strokeWidth="2"
-											fill="none"
-											stroke="currentColor"
-										>
-											<path d="M6 3L20 12 6 21 6 3z"></path>
-										</g>
-									</svg>
-								</button>
-								<button className="btn btn-square btn-ghost">
-									<svg
-										className="size-[1.2em]"
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 24 24"
+										Reject
+									</button>
+									<button
+										disabled={loading}
+										onClick={() => sendResponse("accepted", user._id)}
+										className="btn btn-secondary "
 									>
-										<g
-											strokeLinejoin="round"
-											strokeLinecap="round"
-											strokeWidth="2"
-											fill="none"
-											stroke="currentColor"
-										>
-											<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-										</g>
-									</svg>
-								</button>
+										Accept
+									</button>
+								</div>
+								{/* <span className="w-full border-b-[1px] last:border-b-0"></span> */}
 							</li>
 						);
 					})}
