@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useLogin from "../hooks/useLogin";
+import useLogin from "../hooks/useLogin.js";
 
 const Login = () => {
 	const { loading, login } = useLogin();
@@ -10,6 +10,9 @@ const Login = () => {
 	const handleSubmit = () => {
 		login(formData);
 	};
+	if (loading) {
+		return <div className="loading loading-spinner text-primary"></div>;
+	}
 
 	return (
 		<div className="card bg-base-300 w-96 shadow-sm">

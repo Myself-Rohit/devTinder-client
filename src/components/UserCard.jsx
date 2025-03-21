@@ -1,6 +1,14 @@
 import React from "react";
+import useSendRequest from "../hooks/useSendRequest.js";
 
 const UserCard = ({ data }) => {
+	const { loading, sendRequest } = useSendRequest();
+	const handleRequest = (status, receiverId) => {
+		sendRequest(status, receiverId);
+	};
+	if (loading) {
+		return <div className="loading loading-spinner text-primary"></div>;
+	}
 	return (
 		<div className="card bg-base-100 max-w-96 shadow-sm">
 			<figure>
@@ -10,16 +18,22 @@ const UserCard = ({ data }) => {
 				<h2 className="card-title">
 					{data?.firstName} {data?.lastName}
 				</h2>
-				<p>
-					{data?.age}
-					{", "}
-					{data?.gender}
-				</p>
+				<p>{data?.age + ", " + data?.gender}</p>
 				<p>{data?.about}</p>
 
 				<div className="card-actions justify-end">
-					<button className="btn btn-active btn-primary">Ignore</button>
-					<button className="btn btn-active btn-secondary">Interested</button>
+					<button
+						onClick={() => handleRequest("ignored", data?._id)}
+						className="btn btn-active btn-primary"
+					>
+						Ignore
+					</button>
+					<button
+						onClick={() => handleRequest("interested", data?._id)}
+						className="btn btn-active btn-secondary"
+					>
+						Interested
+					</button>
 				</div>
 			</div>
 		</div>

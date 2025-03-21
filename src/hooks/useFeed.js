@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 
 const useFeed = () => {
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState(null);
 	const dispatch = useDispatch();
 	const getFeed = async () => {
 		try {
@@ -27,10 +26,9 @@ const useFeed = () => {
 		}
 	};
 	useEffect(() => {
-		const feed = getFeed();
-		if (feed) setData(feed);
+		getFeed();
 	}, []);
-	return { loading, data };
+	return { loading };
 };
 
 export default useFeed;

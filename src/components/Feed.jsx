@@ -4,12 +4,14 @@ import UserCard from "./UserCard";
 import useFeed from "../hooks/useFeed.js";
 
 const Feed = () => {
-	const { loading, data } = useFeed();
+	const { loading } = useFeed();
 	const feed = useSelector((store) => store.feed);
+	console.log("feed>>>>", feed);
 	if (loading) {
 		return <span className="loading loading-spinner text-primary"></span>;
 	}
-	if (data && data.length == 0) return <div>No feed to show</div>;
+	if (feed && feed.length == 0)
+		return <div className="text-center font-semibold">No feed to show</div>;
 	return (
 		feed && (
 			<div>

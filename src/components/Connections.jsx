@@ -2,10 +2,18 @@ import React from "react";
 import useConnections from "../hooks/useConnections.js";
 
 const Connections = () => {
-	const { data } = useConnections();
+	const { loading, data } = useConnections();
+	if (loading) {
+		return <div className="loading loading-spinner text-primary"></div>;
+	}
+	if (data?.length == 0) {
+		return (
+			<div className="text-center font-semibold mb-4">No Connection found</div>
+		);
+	}
 	return (
 		<div>
-			<h1>Connections</h1>
+			<h1 className="text-center font-semibold mb-4">Connections</h1>
 			{data && (
 				<ul className="list bg-base-100 rounded-box shadow-md">
 					{data.map((user) => {
