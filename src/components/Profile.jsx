@@ -10,9 +10,8 @@ const Profile = () => {
 	const [formData, setFormData] = useState({
 		firstName: user?.firstName,
 		lastName: user?.lastName,
-		email: user?.email,
-		age: user?.age,
-		gender: user?.gender,
+		age: user?.age || "",
+		gender: user?.gender || "",
 		about: user?.about,
 		photoUrl: user?.photoUrl,
 	});
@@ -29,7 +28,7 @@ const Profile = () => {
 		return <span className="loading loading-spinner text-primary"></span>;
 	}
 	return (
-		<div className="flex flex-col sm:flex-row bg-base-300 items-center sm:items-start sm:justify-center sm:mt-10 p-5 gap-5">
+		<div className="flex flex-col sm:flex-row bg-base-300 items-center sm:items-start sm:justify-center p-5 gap-5">
 			<div className="flex flex-col gap-3 min-w-1/2">
 				<div>
 					<label className="input validator">
@@ -96,34 +95,7 @@ const Profile = () => {
 						/>
 					</label>
 				</div>
-				<div>
-					<label className="input validator">
-						<svg
-							className="h-[1em] opacity-50"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
-						>
-							<g
-								strokeLinejoin="round"
-								strokeLinecap="round"
-								strokeWidth="2.5"
-								fill="none"
-								stroke="currentColor"
-							>
-								<rect width="20" height="16" x="2" y="4" rx="2"></rect>
-								<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-							</g>
-						</svg>
-						<input
-							type="email"
-							placeholder="mail@site.com"
-							required
-							name="email"
-							value={formData?.email}
-							onChange={handleChange}
-						/>
-					</label>
-				</div>
+
 				<div>
 					<input
 						type="number"

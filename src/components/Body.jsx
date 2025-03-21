@@ -12,7 +12,7 @@ const Body = () => {
 	return (
 		<div>
 			<Navbar />
-			<div className="min-h-screen relative bg-base-200 p-5">
+			<div className="min-h-screen relative bg-base-200 p-5 flex justify-center items-start">
 				<Outlet />
 			</div>
 			<Footer />

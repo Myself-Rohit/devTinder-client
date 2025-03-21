@@ -24,11 +24,11 @@ const Requests = () => {
 						return (
 							<li
 								key={user?.senderId?._id}
-								className="sm:list-row pb-4 flex flex-col gap-5 items-center border-b last:border-b-0 sm:border-none m-4 "
+								className="sm:list-row justify-self-center pb-4 flex flex-col gap-5 items-center border-b last:border-b-0 sm:border-none m-4 "
 							>
 								<div>
 									<img
-										className="size-10 rounded-full"
+										className="size-10 sm:size-16 rounded-full"
 										src={user?.senderId?.photoUrl}
 										alt="profile-photo"
 									/>

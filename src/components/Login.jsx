@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import useLogin from "../hooks/useLogin.js";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 	const { loading, login } = useLogin();
 	const [formData, setFormData] = useState({});
+	const [showPassword, setShowPassword] = useState(false);
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
@@ -30,14 +32,29 @@ const Login = () => {
 				</fieldset>
 				<fieldset className="fieldset">
 					<legend className="fieldset-legend">Password:</legend>
-					<input
-						onChange={(e) => handleChange(e)}
-						name="password"
-						type="text"
-						className="input"
-						placeholder=""
-					/>
+					<div className="relative">
+						<input
+							onChange={(e) => handleChange(e)}
+							name="password"
+							type={showPassword ? "text" : "password"}
+							className="input"
+							placeholder=""
+						/>
+						<span
+							className="absolute right-[7%] top-1/2 -translate-y-1/2 w-5 cursor-pointer"
+							onClick={() => setShowPassword(!showPassword)}
+						>
+							{showPassword ? (
+								<img src="https://cdn0.iconfinder.com/data/icons/e-commerce-297/3600/46-64.png" />
+							) : (
+								<img src="https://cdn1.iconfinder.com/data/icons/user-interface-5-basic-outline/24/close_eye__eye_close_eye_password_hidden-64.png" />
+							)}
+						</span>
+					</div>
 				</fieldset>
+				<Link to={"/signup"} className="text-indigo-600 max-w-max">
+					New user? Signup
+				</Link>
 				<div className="card-actions">
 					<button onClick={handleSubmit} className="btn btn-primary">
 						Sign In

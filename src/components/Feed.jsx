@@ -6,7 +6,6 @@ import useFeed from "../hooks/useFeed.js";
 const Feed = () => {
 	const { loading } = useFeed();
 	const feed = useSelector((store) => store.feed);
-	console.log("feed>>>>", feed);
 	if (loading) {
 		return <span className="loading loading-spinner text-primary"></span>;
 	}
@@ -14,7 +13,7 @@ const Feed = () => {
 		return <div className="text-center font-semibold">No feed to show</div>;
 	return (
 		feed && (
-			<div>
+			<div className="flex items-center justify-center">
 				<UserCard data={feed[0]} />
 			</div>
 		)
