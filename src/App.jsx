@@ -10,6 +10,7 @@ import appStore from "./store/appStore.js";
 import Connections from "./components/Connections.jsx";
 import Requests from "./components/Requests.jsx";
 import Signup from "./components/Signup.jsx";
+import Chat from "./components/Chat.jsx";
 const App = () => {
 	return (
 		<Provider store={appStore}>
@@ -22,6 +23,7 @@ const App = () => {
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/connections" element={<Connections />} />
 						<Route path="/requests" element={<Requests />} />
+						<Route path="/chat/:receiverId" element={<Chat />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
