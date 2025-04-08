@@ -9,6 +9,10 @@ const appStore = configureStore({
 		feed: feedReducer,
 		request: requestReducer,
 	},
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
 });
 
 export default appStore;

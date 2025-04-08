@@ -10,10 +10,8 @@ const Chat = () => {
 	const { receiverId } = useParams();
 	const senderId = user?._id;
 	const [message, setMessage] = useState("");
-
 	const { chats, setChats } = useGetMessages(receiverId);
 	const { sendMessage } = useSendMessage();
-	console.log(chats);
 	useEffect(() => {
 		const socket = createSocketConnection();
 		socket.emit("joinChat", { senderId, receiverId });
@@ -39,19 +37,18 @@ const Chat = () => {
 							<div
 								key={chat?._id}
 								className={`chat ${
-									chat?.senderId == user?._id ? "chat-end" : "chat-start"
+									chat?.senderId._id == user?._id ? "chat-end" : "chat-start"
 								}`}
 							>
 								<div className="chat-image avatar">
 									<div className="w-10 rounded-full">
-										<img
-											alt="Tailwind CSS chat bubble component"
-											src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-										/>
+										<img alt="user image" src={chat?.senderId?.photoUrl} />
 									</div>
 								</div>
 								<div className="chat-header">
-									John Doe
+									{chat?.senderId._id == user?._id
+										? chat?.senderId?.firstName
+										: chat?.receiverId?.firstName}
 									<time className="text-xs opacity-50">12:45</time>
 								</div>
 								<div className="chat-bubble bg-base-200">{chat?.message}</div>

@@ -12,6 +12,9 @@ const useProfileEdit = () => {
 		try {
 			setLoading(true);
 			const res = await axios.patch(`${BASE_URL}/api/profile/edit`, user, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
 				withCredentials: true,
 			});
 			if (res.data) {

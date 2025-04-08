@@ -6,7 +6,7 @@ import { addUser } from "../slice/userSlice.js";
 
 const Profile = () => {
 	const user = useSelector((state) => state.user);
-
+	const [image, setImage] = useState(user?.photoUrl);
 	const [formData, setFormData] = useState({
 		firstName: user?.firstName,
 		lastName: user?.lastName,
@@ -18,9 +18,20 @@ const Profile = () => {
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
+	const handleImageChange = (e) => {
+		const file = e.target.files[0];
+		if (!file) return;
+		setImage(file);
+		setFormData((prev) => ({ ...prev, photoUrl: file }));
+	};
 	const { loading, profileEdit } = useProfileEdit();
 	const dispatch = useDispatch();
 	const saveInfo = () => {
+		const data = new FormData();
+		data.append("photoUrl", image);
+		if (data) {
+			setFormData({ ...formData, photoUrl: image });
+		}
 		profileEdit(formData);
 		dispatch(addUser(formData));
 	};
@@ -129,34 +140,13 @@ const Profile = () => {
 					</select>
 				</div>
 				<div>
-					<label className="input validator">
-						<svg
-							className="h-[1em] opacity-50"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
-						>
-							<g
-								strokeLinejoin="round"
-								strokeLinecap="round"
-								strokeWidth="2.5"
-								fill="none"
-								stroke="currentColor"
-							>
-								<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-								<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-							</g>
-						</svg>
-						<input
-							type="url"
-							required
-							placeholder="https://"
-							pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
-							title="Must be valid URL"
-							name="photoUrl"
-							value={formData?.photoUrl}
-							onChange={handleChange}
-						/>
-					</label>
+					<input
+						type="file"
+						accept="image/*"
+						required
+						name="photoUrl"
+						onChange={handleImageChange}
+					/>
 				</div>
 				<div>
 					<textarea

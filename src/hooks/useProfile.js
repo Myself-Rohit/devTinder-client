@@ -23,9 +23,6 @@ const useProfile = () => {
 			}
 		} catch (error) {
 			navigate("/login");
-			// toast.error(
-			// 	error?.response?.data || error?.message || "Failed to fetch user!"
-			// );
 		} finally {
 			setLoading(false);
 		}

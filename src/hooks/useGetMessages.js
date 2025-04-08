@@ -15,7 +15,6 @@ const useGetMessages = (receiverId) => {
 				{ withCredentials: true }
 			);
 			if (res.data) {
-				console.log(res.data);
 				setChats(res.data);
 			}
 		} catch (error) {
